@@ -7,129 +7,128 @@
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
-  box-sizing: border-box;
-}
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: 'Karla', sans-serif;
-  background: #f5f8ff;
-  color: #333;
-  padding: 40px 20px;
-  max-width: 900px;
-  margin: auto;
-}
+    body {
+      font-family: 'Karla', sans-serif;
+      background: #f5f8ff;
+      color: #333;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
 
-h1 {
-  text-align: center;
-  color: #1a73e8;
-  margin-bottom: 10px;
-  font-size: 2.7rem;
-}
+    h1 {
+      text-align: center;
+      color: #1a73e8;
+      margin-bottom: 10px;
+      font-size: 2.7rem;
+    }
 
-.intro {
-  text-align: center;
-  font-size: 1.1rem;
-  margin-bottom: 40px;
-  color: #444;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
+    .intro {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      color: #444;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
 
-.form-group {
-  background: #fff;
-  padding: 20px 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s;
-}
+    .form-group {
+      background: #fff;
+      padding: 20px 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      transition: box-shadow 0.3s;
+    }
 
-.form-group:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
+    .form-group:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
 
-label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 12px;
-  color: #222;
-  font-size: 1.05rem;
-}
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 12px;
+      color: #222;
+      font-size: 1.05rem;
+    }
 
-.superlative-title {
-  font-weight: 700;
-  color: #1a73e8;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  text-align: center;
-}
+    .superlative-title {
+      font-weight: 700;
+      color: #1a73e8;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      text-align: center;
+    }
 
-.superlative-desc {
-  margin-top: 6px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-align: center;
-  color: #333;
-}
+    .superlative-desc {
+      margin-top: 6px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-align: center;
+      color: #333;
+    }
 
-select {
-  width: 100%;
-  max-width: 100%;
-  padding: 12px 44px 12px 14px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1.05rem;
-  background-color: #fff;
-  transition: border 0.3s, box-shadow 0.3s;
-  background-image: url("data:image/svg+xml;utf8,<svg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  cursor: pointer;
-}
+    select {
+      width: 100%;
+      max-width: 100%;
+      padding: 12px 44px 12px 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1.05rem;
+      background-color: #fff;
+      transition: border 0.3s, box-shadow 0.3s;
+      background-image: url("data:image/svg+xml;utf8,<svg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+    }
 
-select:focus {
-  outline: none;
-  border-color: #1a73e8;
-  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
-}
+    select:focus {
+      outline: none;
+      border-color: #1a73e8;
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+    }
 
-select:hover {
-  border-color: #999;
-}
+    select:hover {
+      border-color: #999;
+    }
 
-button {
-  margin: 50px auto 0;
-  padding: 16px 36px;
-  background-color: #1a73e8;
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
+    button {
+      margin: 50px auto 0;
+      padding: 16px 36px;
+      background-color: #1a73e8;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
 
-button:hover {
-  background-color: #155ab6;
-  transform: translateY(-2px);
-}
+    button:hover {
+      background-color: #155ab6;
+      transform: translateY(-2px);
+    }
 
-button:active {
-  transform: translateY(1px);
-  background-color: #124a94;
-}
-
+    button:active {
+      transform: translateY(1px);
+      background-color: #124a94;
+    }
   </style>
 </head>
 <body>
@@ -138,10 +137,21 @@ button:active {
   <p class="intro">⭐Welcome to the Award Ceremony for the first ever BooBYS (Booty Bandits Yearly Superlatives)!⭐<br><br>
   The following statements will be provided and you will choose who best fits these statements to you. Have fun with it!</p>
 
-  <form id="superlativeForm">
-    <!-- Dropdowns will be inserted here by JavaScript -->
-    <button type="submit">Submit</button>
+  <form id="superlativeForm" onsubmit="submitToGoogle(event)">
+    <button type="submit">Submit Nominations</button>
   </form>
+
+  <div id="thankYouMessage" style="display: none; text-align: center; padding: 40px 20px;">
+    <h2 style="font-size: 1.8rem; color: #1a73e8; font-weight: 700;">
+      ⭐ Thanks for your submissions! ⭐
+    </h2>
+    <p style="font-size: 1.05rem; margin-top: 20px; color: #444;">
+      If you want to change your votes — too bad.<br><br>
+      Winners will be announced at the upcoming <strong>BooBYS Awards Ceremony</strong>.<br>
+      There will also be a crowned <strong>"BOOB of the Year"</strong> for the nominee that gets voted in the most number of categories.<br><br>
+      Good luck soldiers 🫡
+    </p>
+  </div>
 
   <script>
     const names = [
@@ -182,29 +192,29 @@ button:active {
       "put their pets as beneficiaries on their life insurance vs their kids/spouse",
       "discover a squatter living in their house but makes them part of the family"
     ];
+  const form = document.getElementById('superlativeForm');
+  const dropdowns = [];
 
-    const form = document.getElementById('superlativeForm');
-    const dropdowns = [];
-
+    // Dynamically create dropdowns
     superlatives.forEach((desc, i) => {
       const group = document.createElement('div');
       group.className = 'form-group';
-
+    
       const label = document.createElement('label');
       label.htmlFor = `dropdown${i}`;
-
+    
       const titleLine = document.createElement('div');
       titleLine.className = 'superlative-title';
       titleLine.textContent = 'MOST LIKELY TO...';
-
+    
       const descLine = document.createElement('div');
       descLine.className = 'superlative-desc';
       descLine.textContent = desc;
-
+    
       label.appendChild(titleLine);
       label.appendChild(descLine);
       group.appendChild(label);
-
+    
       const select = document.createElement('select');
       select.id = `dropdown${i}`;
       select.name = `superlative${i}`;
@@ -213,13 +223,15 @@ button:active {
       names.forEach(name => {
         select.innerHTML += `<option value="${name}">${name}</option>`;
       });
-
+    
       select.addEventListener('change', updateDropdowns);
       dropdowns.push(select);
       group.appendChild(select);
+    
+      // Insert before the last child (the submit button)
       form.insertBefore(group, form.lastElementChild);
     });
-
+    
     function updateDropdowns() {
       const selected = dropdowns.map(d => d.value).filter(Boolean);
       dropdowns.forEach(dropdown => {
@@ -233,7 +245,43 @@ button:active {
         });
       });
     }
-  </script>
+    
+    // Submit handler with Google Sheets integration stub
+    function submitToGoogle(e) {
+      e.preventDefault();
+    
+      // Check all dropdowns have values
+      if (!dropdowns.every(d => d.value)) {
+        alert("Please complete all selections before submitting.");
+        return;
+      }
+    
+      // Collect data
+      const data = {};
+      dropdowns.forEach((d, i) => {
+        data[`superlative${i}`] = d.value;
+      });
+    
+      // TODO: Replace with your deployed Google Apps Script Web App URL
+      const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL";
+    
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        // Hide form and show thank you
+        form.style.display = "none";
+        document.getElementById("thankYouMessage").style.display = "block";
+      })
+      .catch(error => {
+        alert("Something went wrong submitting your nomination. Please try again.");
+        console.error(error);
+      });
+    }
 
-</body>
-</html>
+  
