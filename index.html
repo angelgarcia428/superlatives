@@ -150,6 +150,66 @@
       font-size: 1.05rem;
       line-height: 1.5;
     }
+
+    #summaryPage {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 24px 32px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    #summaryPage h2 {
+      text-align: center;
+      color: #1a73e8;
+      font-weight: 700;
+      margin-bottom: 28px;
+      font-size: 2rem;
+    }
+
+    .summary-item {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+      box-shadow: inset 0 0 0 2px #1a73e8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #eaf2ff;
+      font-weight: 600;
+    }
+
+    .summary-item.missing {
+      background-color: #fdd;
+      border-color: #e00;
+      color: #a00;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .summary-item .superlative-text {
+      flex: 1 1 65%;
+      margin-right: 12px;
+      color: #1a73e8;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .summary-item .nominee {
+      flex: 1 1 35%;
+      text-align: right;
+      color: #222;
+      font-weight: 500;
+      font-style: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
   </style>
 </head>
 <body>
@@ -169,12 +229,18 @@
       </label>
       <select id="voterName" name="voterName" required>
         <option value="">-- Select your name --</option>
-        <!-- Options will be added by JS -->
+        <!-- Options added by JS -->
       </select>
     </div>
 
     <button type="submit">Submit</button>
   </form>
+
+  <!-- Summary page will show here after submit -->
+  <div id="summaryPage">
+    <h2>Your Voting Summary</h2>
+    <div id="summaryList"></div>
+  </div>
 
   <div id="thankYouMessage">
     <h2>⭐ Thanks for your submissions! ⭐</h2>
@@ -228,6 +294,9 @@
 
     const form = document.getElementById('superlativeForm');
     const voterSelect = document.getElementById('voterName');
+    const summaryPage = document.getElementById('summaryPage');
+    const summaryList = document.getElementById('summaryList');
+    const thankYouMessage = document.getElementById('thankYouMessage');
     const dropdowns = [];
 
     // Populate voter name dropdown
@@ -261,8 +330,8 @@
       const select = document.createElement('select');
       select.id = `dropdown${i}`;
       select.name = `superlative${i}`;
-      select.required = true;
-      select.innerHTML = `<option value="">-- Select a nominee --</option>`;
+      // Dropdown is optional — no required
+      select.innerHTML = `<option value="">-- Select a nominee (optional) --</option>`;
       names.forEach(name => {
         select.innerHTML += `<option value="${name}">${name}</option>`;
       });
@@ -275,7 +344,9 @@
 
     // Disable options already selected in other dropdowns (except current)
     function updateDropdowns() {
-      const selected = dropdowns.map(d => d.value).filter(Boolean);
+      const selected = dropdowns
+        .map(d => d.value)
+        .filter(val => val !== "");
       dropdowns.forEach(dropdown => {
         const current = dropdown.value;
         Array.from(dropdown.options).forEach(option => {
@@ -288,7 +359,7 @@
       });
     }
 
-    // Submit handler with Google Sheets integration
+    // Submit handler with Google Sheets integration + show summary page
     function submitToGoogle(e) {
       e.preventDefault();
 
@@ -297,15 +368,10 @@
         return;
       }
 
-      if (!dropdowns.every(d => d.value)) {
-        alert("Please complete all selections before submitting.");
-        return;
-      }
-
       const formData = new FormData();
       formData.append('voterName', voterSelect.value);
       dropdowns.forEach((d, i) => {
-        formData.append(`superlative${i + 1}`, d.value);
+        formData.append(`superlative${i + 1}`, d.value || "");
       });
 
       const scriptURL = "https://script.google.com/macros/s/AKfycbwzmtlb5NGCZM-vrMVwEr4xVXhCLnGW2FgWnVhz968vICSmDHCIo11WCVIGHXdWwjnp/exec";
@@ -316,8 +382,33 @@
       })
         .then(response => {
           if (!response.ok) throw new Error("Network error");
+
+          // Hide form
           form.style.display = "none";
-          document.getElementById("thankYouMessage").style.display = "block";
+
+          // Build summary list
+          summaryList.innerHTML = '';
+          superlatives.forEach((desc, i) => {
+            const vote = dropdowns[i].value;
+            const item = document.createElement('div');
+            item.className = 'summary-item' + (vote === "" ? ' missing' : '');
+
+            const supText = document.createElement('div');
+            supText.className = 'superlative-text';
+            supText.textContent = `MOST LIKELY TO... ${desc}`;
+
+            const nominee = document.createElement('div');
+            nominee.className = 'nominee';
+            nominee.textContent = vote === "" ? 'No vote submitted' : vote;
+
+            item.appendChild(supText);
+            item.appendChild(nominee);
+            summaryList.appendChild(item);
+          });
+
+          // Show summary page and thank you message
+          summaryPage.style.display = 'block';
+          thankYouMessage.style.display = 'block';
         })
         .catch(error => {
           alert("Something went wrong submitting your nomination. Please try again.");
