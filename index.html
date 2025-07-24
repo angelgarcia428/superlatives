@@ -1,310 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>BooBYS AWARDS 2025</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Karla', sans-serif;
-      background: #f5f8ff;
-      color: #333;
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: #1a73e8;
-      margin-bottom: 10px;
-      font-size: 2.7rem;
-    }
-
-    .intro {
-      text-align: center;
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      color: #444;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-
-    .form-group {
-      background: #fff;
-      padding: 20px 24px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      transition: box-shadow 0.3s;
-    }
-
-    .form-group:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 12px;
-      color: #222;
-      font-size: 1.05rem;
-    }
-
-    .superlative-title {
-      font-weight: 700;
-      color: #1a73e8;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      text-align: center;
-    }
-
-    .superlative-desc {
-      margin-top: 6px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      text-align: center;
-      color: #333;
-    }
-
-    select {
-      width: 100%;
-      max-width: 100%;
-      padding: 12px 44px 12px 14px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 1.05rem;
-      background-color: #fff;
-      transition: border 0.3s, box-shadow 0.3s;
-      background-image: url("data:image/svg+xml;utf8,<svg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 14px center;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      cursor: pointer;
-    }
-
-    select:focus {
-      outline: none;
-      border-color: #1a73e8;
-      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
-    }
-
-    select:hover {
-      border-color: #999;
-    }
-
-    button {
-      margin: 50px auto 0;
-      padding: 16px 36px;
-      background-color: #1a73e8;
-      border: none;
-      color: #fff;
-      font-size: 1.2rem;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    button:hover {
-      background-color: #155ab6;
-      transform: translateY(-2px);
-    }
-
-    button:active {
-      transform: translateY(1px);
-      background-color: #124a94;
-    }
-
-    #thankYouMessage {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-      max-width: 700px;
-      margin: 40px auto 0;
-      color: #444;
-    }
-
-    #thankYouMessage h2 {
-      font-size: 1.8rem;
-      color: #1a73e8;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-
-    #thankYouMessage p {
-      font-size: 1.05rem;
-      line-height: 1.5;
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>BooBYS AWARDS 2025 - Demo</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 500px; margin: 2rem auto; padding: 1rem; }
+  .thank-you { display: none; text-align: center; margin-top: 2rem; }
+  .thank-you h2 { font-size: 1.8rem; color: #1a73e8; font-weight: 700; }
+</style>
 </head>
 <body>
 
-  <h1>BooBYS AWARDS 2025</h1>
-  <p class="intro">
-    ⭐Welcome to the Award Ceremony for the first ever BooBYS (Booty Bandits Yearly Superlatives)!⭐<br /><br />
-    The following statements will be provided and you will choose who best fits these statements to you. Have fun with it!
+<h1>BooBYS AWARDS 2025</h1>
+
+<form id="nomForm">
+  <label for="superlative1">Most likely to break a world record:</label><br/>
+  <select id="superlative1" name="superlative1" required>
+    <option value="">-- Select nominee --</option>
+    <option value="Adrian G">Adrian G</option>
+    <option value="Angel G">Angel G</option>
+    <option value="Anna G">Anna G</option>
+  </select><br/><br/>
+
+  <label for="superlative2">Most likely to join a cult:</label><br/>
+  <select id="superlative2" name="superlative2" required>
+    <option value="">-- Select nominee --</option>
+    <option value="Adrian G">Adrian G</option>
+    <option value="Angel G">Angel G</option>
+    <option value="Anna G">Anna G</option>
+  </select><br/><br/>
+
+  <button type="submit">Submit Nominations</button>
+</form>
+
+<div class="thank-you" id="thankYouMessage">
+  <h2>⭐ Thanks for your submissions! ⭐</h2>
+  <p>
+    If you want to change your votes — too bad.<br/><br/>
+    Winners will be announced at the upcoming <strong>BooBYS Awards Ceremony</strong>.<br/>
+    There will also be a crowned <strong>"BOOB of the Year"</strong> for the nominee with the most votes across all categories.<br/><br/>
+    Good luck soldiers 🫡
   </p>
+</div>
 
-  <form id="superlativeForm" onsubmit="submitToGoogle(event)">
-    <button type="submit">Submit</button>
-  </form>
+<script>
+  const form = document.getElementById('nomForm');
 
-  <div id="thankYouMessage">
-    <h2>⭐ Thanks for your submissions! ⭐</h2>
-    <p>
-      If you want to change your votes — too bad.<br /><br />
-      Winners will be announced at the upcoming <strong>BooBYS Awards Ceremony</strong>.<br />
-      There will also be a crowned <strong>"BOOB of the Year"</strong> for the nominee that gets voted in the most number of categories.<br /><br />
-      Good luck soldiers 🫡
-    </p>
-  </div>
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-  <script>
-    const names = [
-      "Adrian G", "Angel G", "Ankit T", "Anna G", "Brooke S", "Cam J", "Collin T",
-      "Dameli U", "Emily B", "Gavin I", "Heather M", "Isabella S", "James V",
-      "Jared F", "Jasmine B", "Jeremy C", "Jon C", "Jordan F", "Lekai T",
-      "Lonelle P", "Mesa V", "Owen D", "Rob R", "Ryan B", "Ryan M",
-      "Sydney P", "Tiffany D", "Victoria T"
-    ];
+    const data = {
+      superlative1: form.superlative1.value,
+      superlative2: form.superlative2.value
+    };
 
-    const superlatives = [
-      "break a world record and break all their bones in the process",
-      "join a cult “for the plot” and eventually become the leader",
-      "drop acid and still file their taxes correctly",
-      "become a van guy/girl and end up on a true crime Netflix series as a witness",
-      "win the lottery and be bankrupt within a year",
-      "plan their bachelor/bachelorette party for Las Vegas, NV but book everything in Las Vegas, NM",
-      "liquidate their 401k to buy a compound for the friend group",
-      "get discovered by someone with an extreme foot fetish and get all their debts paid off",
-      "get on reality TV and get no air time except for 1 embarrassing moment that goes viral",
-      "get their identity stolen and it actually improves their credit score and financial status",
-      "donate money to a Nigerian prince and it ends up being real and they become royalty",
-      "get blindfolded and dropped off anywhere in Seattle and not be able to get home by foot for a week",
-      "end up on a yacht with gays that are trying to kill them",
-      "plot to kill their boss and not be able to go through with it and then accidentally run them over with their car",
-      "set off the Lunk Alarm every time they are at a Planet Fitness",
-      "show up late to their own wedding because they got ready, hated it, and started over 3 times",
-      "drop off the face of the earth for a year and show up randomly for a Booty Bandit Bday unannounced",
-      "try to have a kid at the same time as their homie/bestie in hopes their kids will get married and you will be related",
-      "try to set you up with a relative/cousin in hopes you guys get married and you will be related",
-      "be hired as an unlicensed therapist by a millionaire because you give such good advice",
-      "get a larynx (voice box) transplant from the first ever case of hyperyapping syndrome",
-      "get a blood alcohol level (BAC) as high as their high school GPA",
-      "end up as the final girl/boy in a horror movie by sheer accident rather than skill",
-      "get a matching tattoo with a stranger they just trauma-bonded with in a bar bathroom",
-      "spend their life doomsday prepping only to lose their shit and become useless when an actual apocalypse happens",
-      "offer to play a set at a family member's funeral",
-      "put their pets as beneficiaries on their life insurance vs their kids/spouse",
-      "discover a squatter living in their house but makes them part of the family"
-    ];
+    const webappURL = "https://script.google.com/macros/s/AKfycbzKpy9A_Z25qd29rmgcqwhW3l_Z4dNE4QgZECfFWhRODmOfT9GNkF5Rgfw7jaWhTSG7/exec";  // Replace with your deployed Apps Script URL
 
-    const form = document.getElementById('superlativeForm');
-    const dropdowns = [];
-
-    // Create dropdowns dynamically
-    superlatives.forEach((desc, i) => {
-      const group = document.createElement('div');
-      group.className = 'form-group';
-
-      const label = document.createElement('label');
-      label.htmlFor = `dropdown${i}`;
-
-      const titleLine = document.createElement('div');
-      titleLine.className = 'superlative-title';
-      titleLine.textContent = 'MOST LIKELY TO...';
-
-      const descLine = document.createElement('div');
-      descLine.className = 'superlative-desc';
-      descLine.textContent = desc;
-
-      label.appendChild(titleLine);
-      label.appendChild(descLine);
-      group.appendChild(label);
-
-      const select = document.createElement('select');
-      select.id = `dropdown${i}`;
-      select.name = `superlative${i}`;
-      select.required = true;
-      select.innerHTML = `<option value="">-- Select a nominee --</option>`;
-      names.forEach(name => {
-        select.innerHTML += `<option value="${name}">${name}</option>`;
-      });
-
-      select.addEventListener('change', updateDropdowns);
-      dropdowns.push(select);
-      group.appendChild(select);
-
-      form.insertBefore(group, form.lastElementChild);
-    });
-
-    // Disable options already selected in other dropdowns (except current)
-    function updateDropdowns() {
-      const selected = dropdowns.map(d => d.value).filter(Boolean);
-      dropdowns.forEach(dropdown => {
-        const current = dropdown.value;
-        Array.from(dropdown.options).forEach(option => {
-          if (option.value && option.value !== current) {
-            option.disabled = selected.includes(option.value);
-          } else {
-            option.disabled = false;
-          }
-        });
-      });
-    }
-
-    // Submit handler with Google Sheets integration stub
-    function submitToGoogle(e) {
-      e.preventDefault();
-
-      // Ensure all dropdowns are selected
-      if (!dropdowns.every(d => d.value)) {
-        alert("Please complete all selections before submitting.");
-        return;
+    fetch(webappURL, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" }
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("Network response was not ok");
+      return response.json();
+    })
+    .then(res => {
+      if (res.result === "success") {
+        form.style.display = "none";
+        document.getElementById("thankYouMessage").style.display = "block";
+      } else {
+        alert("Error submitting: " + (res.message || "Unknown error"));
       }
+    })
+    .catch(err => {
+      alert("Something went wrong submitting your nomination. Please try again.");
+      console.error(err);
+    });
+  });
+</script>
 
-      // Gather data
-      const data = {};
-      dropdowns.forEach((d, i) => {
-        data[`superlative${i + 1}`] = d.value;
-      });
-
-      // TODO: Replace with your deployed Google Apps Script Web App URL
-      const scriptURL = "https://script.google.com/macros/s/AKfycbzKpy9A_Z25qd29rmgcqwhW3l_Z4dNE4QgZECfFWhRODmOfT9GNkF5Rgfw7jaWhTSG7/exec";
-
-      fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => {
-          if (!response.ok) throw new Error("Network response was not ok");
-          // Hide form, show thank you
-          form.style.display = "none";
-          document.getElementById("thankYouMessage").style.display = "block";
-        })
-        .catch(error => {
-          alert("Something went wrong submitting your nomination. Please try again.");
-          console.error(error);
-        });
-    }
-  </script>
 </body>
 </html>
