@@ -271,32 +271,25 @@
     // Submit handler with Google Sheets integration stub
     function submitToGoogle(e) {
       e.preventDefault();
-
-      // Ensure all dropdowns are selected
+    
       if (!dropdowns.every(d => d.value)) {
         alert("Please complete all selections before submitting.");
         return;
       }
-
-      // Gather data
-      const data = {};
+    
+      const formData = new FormData();
       dropdowns.forEach((d, i) => {
-        data[`superlative${i + 1}`] = d.value;
+        formData.append(`superlative${i + 1}`, d.value);
       });
-
-      // TODO: Replace with your deployed Google Apps Script Web App URL
-      const scriptURL = "https://script.google.com/macros/s/AKfycbw1fhEow1ZQum_zIAiJIFoK9XNxwcxzL81ePOvYEQb-9WivhFtUwF2Hms3tTtWEaFWJ/exec";
-
+    
+      const scriptURL = "https://script.google.com/macros/s/AKfycbyxM2PX9tV86EhB6Ew9k7qrJx2d8IbHGiBN6odhyksH5CegtBW5dvxy2QRJp24g-At5/exec";
+    
       fetch(scriptURL, {
         method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
+        body: formData,
       })
         .then(response => {
-          if (!response.ok) throw new Error("Network response was not ok");
-          // Hide form, show thank you
+          if (!response.ok) throw new Error("Network error");
           form.style.display = "none";
           document.getElementById("thankYouMessage").style.display = "block";
         })
