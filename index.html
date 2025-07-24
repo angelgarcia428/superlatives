@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>BooBYS AWARDS 2025</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -129,26 +129,47 @@
       transform: translateY(1px);
       background-color: #124a94;
     }
+
+    #thankYouMessage {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 700px;
+      margin: 40px auto 0;
+      color: #444;
+    }
+
+    #thankYouMessage h2 {
+      font-size: 1.8rem;
+      color: #1a73e8;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    #thankYouMessage p {
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
 
   <h1>BooBYS AWARDS 2025</h1>
-  <p class="intro">⭐Welcome to the Award Ceremony for the first ever BooBYS (Booty Bandits Yearly Superlatives)!⭐<br><br>
-  The following statements will be provided and you will choose who best fits these statements to you. Have fun with it!</p>
+  <p class="intro">
+    ⭐Welcome to the Award Ceremony for the first ever BooBYS (Booty Bandits Yearly Superlatives)!⭐<br /><br />
+    The following statements will be provided and you will choose who best fits these statements to you. Have fun with it!
+  </p>
 
   <form id="superlativeForm" onsubmit="submitToGoogle(event)">
     <button type="submit">Submit Nominations</button>
   </form>
 
-  <div id="thankYouMessage" style="display: none; text-align: center; padding: 40px 20px;">
-    <h2 style="font-size: 1.8rem; color: #1a73e8; font-weight: 700;">
-      ⭐ Thanks for your submissions! ⭐
-    </h2>
-    <p style="font-size: 1.05rem; margin-top: 20px; color: #444;">
-      If you want to change your votes — too bad.<br><br>
-      Winners will be announced at the upcoming <strong>BooBYS Awards Ceremony</strong>.<br>
-      There will also be a crowned <strong>"BOOB of the Year"</strong> for the nominee that gets voted in the most number of categories.<br><br>
+  <div id="thankYouMessage">
+    <h2>⭐ Thanks for your submissions! ⭐</h2>
+    <p>
+      If you want to change your votes — too bad.<br /><br />
+      Winners will be announced at the upcoming <strong>BooBYS Awards Ceremony</strong>.<br />
+      There will also be a crowned <strong>"BOOB of the Year"</strong> for the nominee that gets voted in the most number of categories.<br /><br />
       Good luck soldiers 🫡
     </p>
   </div>
@@ -192,29 +213,30 @@
       "put their pets as beneficiaries on their life insurance vs their kids/spouse",
       "discover a squatter living in their house but makes them part of the family"
     ];
-  const form = document.getElementById('superlativeForm');
-  const dropdowns = [];
 
-    // Dynamically create dropdowns
+    const form = document.getElementById('superlativeForm');
+    const dropdowns = [];
+
+    // Create dropdowns dynamically
     superlatives.forEach((desc, i) => {
       const group = document.createElement('div');
       group.className = 'form-group';
-    
+
       const label = document.createElement('label');
       label.htmlFor = `dropdown${i}`;
-    
+
       const titleLine = document.createElement('div');
       titleLine.className = 'superlative-title';
       titleLine.textContent = 'MOST LIKELY TO...';
-    
+
       const descLine = document.createElement('div');
       descLine.className = 'superlative-desc';
       descLine.textContent = desc;
-    
+
       label.appendChild(titleLine);
       label.appendChild(descLine);
       group.appendChild(label);
-    
+
       const select = document.createElement('select');
       select.id = `dropdown${i}`;
       select.name = `superlative${i}`;
@@ -223,15 +245,15 @@
       names.forEach(name => {
         select.innerHTML += `<option value="${name}">${name}</option>`;
       });
-    
+
       select.addEventListener('change', updateDropdowns);
       dropdowns.push(select);
       group.appendChild(select);
-    
-      // Insert before the last child (the submit button)
+
       form.insertBefore(group, form.lastElementChild);
     });
-    
+
+    // Disable options already selected in other dropdowns (except current)
     function updateDropdowns() {
       const selected = dropdowns.map(d => d.value).filter(Boolean);
       dropdowns.forEach(dropdown => {
@@ -245,26 +267,26 @@
         });
       });
     }
-    
+
     // Submit handler with Google Sheets integration stub
     function submitToGoogle(e) {
       e.preventDefault();
-    
-      // Check all dropdowns have values
+
+      // Ensure all dropdowns are selected
       if (!dropdowns.every(d => d.value)) {
         alert("Please complete all selections before submitting.");
         return;
       }
-    
-      // Collect data
+
+      // Gather data
       const data = {};
       dropdowns.forEach((d, i) => {
-        data[`superlative${i}`] = d.value;
+        data[`superlative${i + 1}`] = d.value;
       });
-    
+
       // TODO: Replace with your deployed Google Apps Script Web App URL
-      const scriptURL = "YOUR_GOOGLE_APPS_SCRIPT_WEBAPP_URL";
-    
+      const scriptURL = "https://script.google.com/macros/s/AKfycbypJ2Qk6eORypatHuYJBEi0kI8MzFScdlQn_vgP3vrSQwDYGqwJDhSPhLDoj6Q0j1Wv/exec";
+
       fetch(scriptURL, {
         method: "POST",
         body: JSON.stringify(data),
@@ -272,16 +294,17 @@
           "Content-Type": "application/json"
         }
       })
-      .then(response => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        // Hide form and show thank you
-        form.style.display = "none";
-        document.getElementById("thankYouMessage").style.display = "block";
-      })
-      .catch(error => {
-        alert("Something went wrong submitting your nomination. Please try again.");
-        console.error(error);
-      });
+        .then(response => {
+          if (!response.ok) throw new Error("Network response was not ok");
+          // Hide form, show thank you
+          form.style.display = "none";
+          document.getElementById("thankYouMessage").style.display = "block";
+        })
+        .catch(error => {
+          alert("Something went wrong submitting your nomination. Please try again.");
+          console.error(error);
+        });
     }
-
-  
+  </script>
+</body>
+</html>
