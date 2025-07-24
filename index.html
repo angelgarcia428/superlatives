@@ -161,6 +161,18 @@
   </p>
 
   <form id="superlativeForm" onsubmit="submitToGoogle(event)">
+    <!-- New voter name dropdown -->
+    <div class="form-group">
+      <label for="voterName">
+        <div class="superlative-title">What's up bitch!!!</div>
+        <div class="superlative-desc">Who are you?</div>
+      </label>
+      <select id="voterName" name="voterName" required>
+        <option value="">-- Select your name --</option>
+        <!-- Options will be added by JS -->
+      </select>
+    </div>
+
     <button type="submit">Submit</button>
   </form>
 
@@ -215,9 +227,18 @@
     ];
 
     const form = document.getElementById('superlativeForm');
+    const voterSelect = document.getElementById('voterName');
     const dropdowns = [];
 
-    // Create dropdowns dynamically
+    // Populate voter name dropdown
+    names.forEach(name => {
+      const option = document.createElement('option');
+      option.value = name;
+      option.textContent = name;
+      voterSelect.appendChild(option);
+    });
+
+    // Create dropdowns dynamically for each superlative
     superlatives.forEach((desc, i) => {
       const group = document.createElement('div');
       group.className = 'form-group';
@@ -248,8 +269,7 @@
 
       select.addEventListener('change', updateDropdowns);
       dropdowns.push(select);
-      group.appendChild(select);
-
+      // Insert each group before the submit button (which is last child)
       form.insertBefore(group, form.lastElementChild);
     });
 
@@ -268,22 +288,28 @@
       });
     }
 
-    // Submit handler with Google Sheets integration stub
+    // Submit handler with Google Sheets integration
     function submitToGoogle(e) {
       e.preventDefault();
-    
+
+      if (!voterSelect.value) {
+        alert("Please select your name before submitting.");
+        return;
+      }
+
       if (!dropdowns.every(d => d.value)) {
         alert("Please complete all selections before submitting.");
         return;
       }
-    
+
       const formData = new FormData();
+      formData.append('voterName', voterSelect.value);
       dropdowns.forEach((d, i) => {
         formData.append(`superlative${i + 1}`, d.value);
       });
-    
+
       const scriptURL = "https://script.google.com/macros/s/AKfycbwzmtlb5NGCZM-vrMVwEr4xVXhCLnGW2FgWnVhz968vICSmDHCIo11WCVIGHXdWwjnp/exec";
-    
+
       fetch(scriptURL, {
         method: "POST",
         body: formData,
