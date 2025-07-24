@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* (Same styling as before) */
     * {
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Karla', sans-serif;
       background: #f5f8ff;
@@ -18,12 +18,14 @@
       max-width: 900px;
       margin: auto;
     }
+
     h1 {
       text-align: center;
       color: #1a73e8;
       margin-bottom: 10px;
       font-size: 2.7rem;
     }
+
     .intro {
       text-align: center;
       font-size: 1.1rem;
@@ -33,11 +35,13 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     form {
       display: flex;
       flex-direction: column;
       gap: 28px;
     }
+
     .form-group {
       background: #fff;
       padding: 20px 24px;
@@ -45,9 +49,11 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       transition: box-shadow 0.3s;
     }
+
     .form-group:hover {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
+
     label {
       font-weight: 600;
       display: block;
@@ -55,6 +61,7 @@
       color: #222;
       font-size: 1.05rem;
     }
+
     .superlative-title {
       font-weight: 700;
       color: #1a73e8;
@@ -62,6 +69,7 @@
       text-transform: uppercase;
       text-align: center;
     }
+
     .superlative-desc {
       margin-top: 6px;
       font-size: 1.1rem;
@@ -69,6 +77,7 @@
       text-align: center;
       color: #333;
     }
+
     select {
       width: 100%;
       max-width: 100%;
@@ -86,14 +95,17 @@
       -moz-appearance: none;
       cursor: pointer;
     }
+
     select:focus {
       outline: none;
       border-color: #1a73e8;
       box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
     }
+
     select:hover {
       border-color: #999;
     }
+
     button {
       margin: 50px auto 0;
       padding: 16px 36px;
@@ -107,14 +119,17 @@
       transition: background 0.3s, transform 0.2s;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     }
+
     button:hover {
       background-color: #155ab6;
       transform: translateY(-2px);
     }
+
     button:active {
       transform: translateY(1px);
       background-color: #124a94;
     }
+
     #thankYouMessage {
       display: none;
       text-align: center;
@@ -123,79 +138,80 @@
       margin: 40px auto 0;
       color: #444;
     }
+
     #thankYouMessage h2 {
       font-size: 1.8rem;
       color: #1a73e8;
       font-weight: 700;
       margin-bottom: 20px;
     }
+
     #thankYouMessage p {
       font-size: 1.05rem;
       line-height: 1.5;
     }
+
+    /* Summary Page */
     #summaryPage {
-      max-width: 700px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 24px 32px;
-      border-radius: 12px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
       display: none;
-      flex-direction: column;
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
     }
+
     #summaryPage h2 {
       text-align: center;
       color: #1a73e8;
+      margin-bottom: 20px;
       font-weight: 700;
-      margin-bottom: 28px;
       font-size: 2rem;
     }
+
     .summary-item {
-      border-radius: 8px;
-      padding: 14px 18px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       font-size: 1.1rem;
-      box-shadow: inset 0 0 0 2px #1a73e8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #eaf2ff;
-      font-weight: 600;
-    }
-    .summary-item.missing {
-      background-color: #fdd;
-      border-color: #e00;
-      color: #a00;
-      font-weight: 700;
-      font-style: italic;
-    }
-    .summary-item .superlative-text {
-      flex: 1 1 65%;
-      margin-right: 12px;
-      color: #1a73e8;
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-    .summary-item .nominee {
-      flex: 1 1 35%;
-      text-align: right;
-      color: #222;
       font-weight: 500;
-      font-style: normal;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
+
+    .summary-item .desc {
+      display: block;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .summary-item .vote {
+      text-align: center;
+      font-weight: 600;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 350px;
+      margin: 0 auto;
+      background-color: #d1f0d1; /* light green */
+      color: #0a6e0a;
+    }
+
+    .summary-item .not-voted {
+      background-color: #f8d7da; /* light red */
+      color: #842029;
+      border: 1px solid #f5c2c7;
+    }
+
     #summaryButtons {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-top: 28px;
+      text-align: center;
+      margin-top: 30px;
     }
+
     #summaryButtons button {
-      width: 140px;
+      margin: 0 15px;
+      min-width: 140px;
     }
+
   </style>
 </head>
 <body>
@@ -206,28 +222,26 @@
     The following statements will be provided and you will choose who best fits these statements to you. Have fun with it!
   </p>
 
-  <form id="superlativeForm" onsubmit="showSummary(event)">
+  <form id="superlativeForm" onsubmit="handleFormSubmit(event)">
+    <!-- Top dropdown for user name -->
     <div class="form-group">
-      <label for="voterName">
-        <div class="superlative-title">What's up bitch!!!</div>
-        <div class="superlative-desc">Who are you?</div>
-      </label>
+      <label for="voterName" class="superlative-title" style="text-align:center;">What's up bitch!!! Who are you</label>
       <select id="voterName" name="voterName" required>
-        <option value="">-- Select your name --</option>
+        <option value="">-- Select yourself --</option>
       </select>
     </div>
 
-    <div id="superlativeDropdowns"></div>
+    <!-- Superlative dropdowns will be inserted here dynamically -->
 
     <button type="submit">Submit</button>
   </form>
 
-  <div id="summaryPage" style="display:none; flex-direction: column;">
-    <h2>Your Voting Summary</h2>
+  <div id="summaryPage">
+    <h2>Review Your Votes</h2>
     <div id="summaryList"></div>
     <div id="summaryButtons">
-      <button id="editVotesBtn" type="button">Go Back & Edit</button>
-      <button id="confirmVotesBtn" type="button">Confirm & Submit</button>
+      <button id="editButton" type="button">Edit Votes</button>
+      <button id="confirmButton" type="button">Confirm & Submit</button>
     </div>
   </div>
 
@@ -240,3 +254,195 @@
       Good luck soldiers 🫡
     </p>
   </div>
+
+  <script>
+    const names = [
+      "Adrian G", "Angel G", "Ankit T", "Anna G", "Brooke S", "Cam J", "Collin T",
+      "Dameli U", "Emily B", "Gavin I", "Heather M", "Isabella S", "James V",
+      "Jared F", "Jasmine B", "Jeremy C", "Jon C", "Jordan F", "Lekai T",
+      "Lonelle P", "Mesa V", "Owen D", "Rob R", "Ryan B", "Ryan M",
+      "Sydney P", "Tiffany D", "Victoria T"
+    ];
+
+    const superlatives = [
+      "break a world record and break all their bones in the process",
+      "join a cult “for the plot” and eventually become the leader",
+      "drop acid and still file their taxes correctly",
+      "become a van guy/girl and end up on a true crime Netflix series as a witness",
+      "win the lottery and be bankrupt within a year",
+      "plan their bachelor/bachelorette party for Las Vegas, NV but book everything in Las Vegas, NM",
+      "liquidate their 401k to buy a compound for the friend group",
+      "get discovered by someone with an extreme foot fetish and get all their debts paid off",
+      "get on reality TV and get no air time except for 1 embarrassing moment that goes viral",
+      "get their identity stolen and it actually improves their credit score and financial status",
+      "donate money to a Nigerian prince and it ends up being real and they become royalty",
+      "get blindfolded and dropped off anywhere in Seattle and not be able to get home by foot for a week",
+      "end up on a yacht with gays that are trying to kill them",
+      "plot to kill their boss and not be able to go through with it and then accidentally run them over with their car",
+      "set off the Lunk Alarm every time they are at a Planet Fitness",
+      "show up late to their own wedding because they got ready, hated it, and started over 3 times",
+      "drop off the face of the earth for a year and show up randomly for a Booty Bandit Bday unannounced",
+      "try to have a kid at the same time as their homie/bestie in hopes their kids will get married and you will be related",
+      "try to set you up with a relative/cousin in hopes you guys get married and you will be related",
+      "be hired as an unlicensed therapist by a millionaire because you give such good advice",
+      "get a larynx (voice box) transplant from the first ever case of hyperyapping syndrome",
+      "get a blood alcohol level (BAC) as high as their high school GPA",
+      "end up as the final girl/boy in a horror movie by sheer accident rather than skill",
+      "get a matching tattoo with a stranger they just trauma-bonded with in a bar bathroom",
+      "spend their life doomsday prepping only to lose their shit and become useless when an actual apocalypse happens",
+      "offer to play a set at a family member's funeral",
+      "put their pets as beneficiaries on their life insurance vs their kids/spouse",
+      "discover a squatter living in their house but makes them part of the family"
+    ];
+
+    const form = document.getElementById('superlativeForm');
+    const summaryPage = document.getElementById('summaryPage');
+    const summaryList = document.getElementById('summaryList');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const editButton = document.getElementById('editButton');
+    const confirmButton = document.getElementById('confirmButton');
+    const voterNameSelect = document.getElementById('voterName');
+
+    const dropdowns = [];
+
+    // Populate voterName dropdown
+    names.forEach(name => {
+      const option = document.createElement('option');
+      option.value = name;
+      option.textContent = name;
+      voterNameSelect.appendChild(option);
+    });
+
+    // Create dropdowns dynamically for superlatives (not required)
+    superlatives.forEach((desc, i) => {
+      const group = document.createElement('div');
+      group.className = 'form-group';
+
+      const label = document.createElement('label');
+      label.htmlFor = `dropdown${i}`;
+
+      const titleLine = document.createElement('div');
+      titleLine.className = 'superlative-title';
+      titleLine.textContent = 'MOST LIKELY TO...';
+
+      const descLine = document.createElement('div');
+      descLine.className = 'superlative-desc';
+      descLine.textContent = desc;
+
+      label.appendChild(titleLine);
+      label.appendChild(descLine);
+      group.appendChild(label);
+
+      const select = document.createElement('select');
+      select.id = `dropdown${i}`;
+      select.name = `superlative${i}`;
+      // NOT required now
+      select.innerHTML = `<option value="">-- Select a nominee --</option>`;
+      names.forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
+      });
+
+      select.addEventListener('change', updateDropdowns);
+      dropdowns.push(select);
+      group.appendChild(select);
+
+      // Insert before submit button (which is last child)
+      form.insertBefore(group, form.lastElementChild);
+    });
+
+    // Disable options already selected in other dropdowns (except current)
+    function updateDropdowns() {
+      const selected = dropdowns.map(d => d.value).filter(Boolean);
+      dropdowns.forEach(dropdown => {
+        const current = dropdown.value;
+        Array.from(dropdown.options).forEach(option => {
+          if (option.value && option.value !== current) {
+            option.disabled = selected.includes(option.value);
+          } else {
+            option.disabled = false;
+          }
+        });
+      });
+    }
+
+    // When user clicks submit on form, show summary page instead of direct submit
+    function handleFormSubmit(e) {
+      e.preventDefault();
+
+      if (!voterNameSelect.value) {
+        alert("Please select who you are at the top before submitting.");
+        return;
+      }
+
+      // Build summary page content
+      summaryList.innerHTML = '';
+
+      superlatives.forEach((desc, i) => {
+        const selectedName = dropdowns[i].value;
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'summary-item';
+
+        const descSpan = document.createElement('span');
+        descSpan.className = 'desc';
+        descSpan.textContent = desc;
+
+        const voteSpan = document.createElement('span');
+        voteSpan.className = 'vote';
+        if (selectedName) {
+          voteSpan.textContent = selectedName;
+        } else {
+          voteSpan.textContent = 'Not voted';
+          voteSpan.classList.add('not-voted');
+        }
+
+        itemDiv.appendChild(descSpan);
+        itemDiv.appendChild(voteSpan);
+        summaryList.appendChild(itemDiv);
+      });
+
+      form.style.display = 'none';
+      thankYouMessage.style.display = 'none';
+      summaryPage.style.display = 'block';
+    }
+
+    // Edit button handler
+    editButton.addEventListener('click', () => {
+      summaryPage.style.display = 'none';
+      thankYouMessage.style.display = 'none';
+      form.style.display = 'flex';
+    });
+
+    // Confirm & Submit button handler
+    confirmButton.addEventListener('click', () => {
+      // Prepare FormData to send
+      const formData = new FormData();
+
+      formData.append('voterName', voterNameSelect.value);
+
+      dropdowns.forEach((d, i) => {
+        formData.append(`superlative${i+1}`, d.value || '');
+      });
+
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwzmtlb5NGCZM-vrMVwEr4xVXhCLnGW2FgWnVhz968vICSmDHCIo11WCVIGHXdWwjnp/exec";
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: formData,
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Network error");
+        summaryPage.style.display = 'none';
+        thankYouMessage.style.display = 'block';
+      })
+      .catch(error => {
+        alert("Something went wrong submitting your nomination. Please try again.");
+        console.error(error);
+      });
+    });
+
+  </script>
+</body>
+</html>
