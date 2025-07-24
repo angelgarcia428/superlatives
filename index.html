@@ -113,7 +113,15 @@
       text-align: center;
       color: #1a73e8;
       font-size: 2rem;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    #summaryNote {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 25px;
+      color: #d00;
     }
 
     .summary-item {
@@ -185,8 +193,8 @@
         <div class="superlative-title">What's up bitch!!!</div>
         <div class="superlative-desc">Who are you?</div>
       </label>
-      <select id="voterName" name="voterName">
-        <option value="">-- Select your name (optional) --</option>
+      <select id="voterName" name="voterName" required>
+        <option value="">-- Select your name --</option>
       </select>
     </div>
 
@@ -197,6 +205,9 @@
 
   <div id="summaryPage">
     <h2>Review Your Votes</h2>
+    <div id="summaryNote">
+      Note: If you voted for all other nominees, you should have 1 superlative that will say "No Results" — if you have more than that, go back and fix that shit.
+    </div>
     <div id="summaryList"></div>
     <div class="btn-group">
       <button class="btn-secondary" onclick="editForm()">Edit</button>
@@ -269,16 +280,16 @@
       const label = document.createElement('label');
       label.htmlFor = `dropdown${id}`;
 
-      const titleLine = document.createElement('div');
-      titleLine.className = 'superlative-title';
-      titleLine.textContent = 'MOST LIKELY TO...';
+      const title = document.createElement('div');
+      title.className = 'superlative-title';
+      title.textContent = 'MOST LIKELY TO...';
 
-      const descLine = document.createElement('div');
-      descLine.className = 'superlative-desc';
-      descLine.textContent = desc;
+      const detail = document.createElement('div');
+      detail.className = 'superlative-desc';
+      detail.textContent = desc;
 
-      label.appendChild(titleLine);
-      label.appendChild(descLine);
+      label.appendChild(title);
+      label.appendChild(detail);
       group.appendChild(label);
 
       const select = document.createElement('select');
@@ -286,7 +297,10 @@
       select.name = `superlative${id}`;
       select.innerHTML = `<option value="">-- Select a nominee --</option>`;
       names.forEach(name => {
-        select.innerHTML += `<option value="${name}">${name}</option>`;
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        select.appendChild(option);
       });
 
       select.addEventListener('change', updateDropdowns);
@@ -296,12 +310,15 @@
       return group;
     }
 
+    // Populate voter name
+    const voterSelect = document.getElementById('voterName');
     names.forEach(name => {
       const option = document.createElement('option');
       option.value = name;
       option.textContent = name;
-      document.getElementById('voterName').appendChild(option);
+      voterSelect.appendChild(option);
     });
+    voterSelect.addEventListener('change', updateDropdowns);
 
     superlatives.forEach((desc, i) => {
       const dropdown = createDropdown(i + 1, desc);
@@ -309,8 +326,8 @@
     });
 
     function updateDropdowns() {
-      const selected = dropdowns.map(d => d.value).filter(Boolean);
-      dropdowns.concat(document.getElementById('voterName')).forEach(dropdown => {
+      const selected = [voterSelect.value, ...dropdowns.map(d => d.value).filter(Boolean)];
+      dropdowns.concat(voterSelect).forEach(dropdown => {
         const current = dropdown.value;
         Array.from(dropdown.options).forEach(option => {
           if (option.value && option.value !== current) {
@@ -324,23 +341,25 @@
 
     function handleReview(e) {
       e.preventDefault();
+      if (!voterSelect.value) {
+        alert("Please select your name at the top.");
+        return;
+      }
+
       form.style.display = 'none';
       summaryList.innerHTML = '';
 
-      const voter = document.getElementById('voterName').value;
-      if (voter) {
-        const voterDiv = document.createElement('div');
-        voterDiv.className = 'summary-item';
-        voterDiv.innerHTML = `<div class="desc">Your name</div><div class="vote">${voter}</div>`;
-        summaryList.appendChild(voterDiv);
-      }
+      const voterDiv = document.createElement('div');
+      voterDiv.className = 'summary-item';
+      voterDiv.innerHTML = `<div class="desc">Your name</div><div class="vote">${voterSelect.value}</div>`;
+      summaryList.appendChild(voterDiv);
 
       superlatives.forEach((desc, i) => {
         const vote = dropdowns[i].value;
         const div = document.createElement('div');
         div.className = 'summary-item';
         if (!vote) div.classList.add('missing');
-        div.innerHTML = `<div class="desc">${desc}</div><div class="vote">${vote || '—'}</div>`;
+        div.innerHTML = `<div class="desc">${desc}</div><div class="vote">${vote || 'No Results'}</div>`;
         summaryList.appendChild(div);
       });
 
@@ -354,7 +373,7 @@
 
     function submitToGoogle() {
       const formData = new FormData();
-      formData.append("voterName", document.getElementById('voterName').value);
+      formData.append("voterName", voterSelect.value);
       dropdowns.forEach((d, i) => {
         formData.append(`superlative${i + 1}`, d.value);
       });
