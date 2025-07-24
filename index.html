@@ -7,102 +7,129 @@
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * {
-      box-sizing: border-box;
-    }
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: 'Karla', sans-serif;
-      background: #f5f8ff;
-      color: #333;
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
+body {
+  font-family: 'Karla', sans-serif;
+  background: #f5f8ff;
+  color: #333;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+}
 
-    h1 {
-      text-align: center;
-      color: #1a73e8;
-      margin-bottom: 10px;
-      font-size: 2.7rem;
-    }
+h1 {
+  text-align: center;
+  color: #1a73e8;
+  margin-bottom: 10px;
+  font-size: 2.7rem;
+}
 
-    .intro {
-      text-align: center;
-      font-size: 1.1rem;
-      margin-bottom: 40px;
-      color: #444;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+.intro {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  color: #444;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
 
-    .form-group {
-      background: #fff;
-      padding: 16px 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
+.form-group {
+  background: #fff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s;
+}
 
-    label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 8px;
-      color: #222;
-      font-size: 1rem;
-    }
+.form-group:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
 
-    .superlative-title {
-      font-weight: 700;
-      color: #1a73e8;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-    }
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+  color: #222;
+  font-size: 1.05rem;
+}
 
-    .superlative-desc {
-      margin-top: 4px;
-      font-size: 1.05rem;
-      font-weight: 500;
-    }
+.superlative-title {
+  font-weight: 700;
+  color: #1a73e8;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  text-align: center;
+}
 
-    select {
-      width: 100%;
-      max-width: 100%;
-      padding: 10px
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      background-color: #fff;
-      transition: border 0.3s;
-    }
+.superlative-desc {
+  margin-top: 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  color: #333;
+}
 
-    select:focus {
-      outline: none;
-      border-color: #1a73e8;
-      box-shadow: 0 0 4px rgba(26, 115, 232, 0.4);
-    }
+select {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px 44px 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1.05rem;
+  background-color: #fff;
+  transition: border 0.3s, box-shadow 0.3s;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
 
-    button {
-      margin: 40px auto 0;
-      padding: 14px 28px;
-      background-color: #1a73e8;
-      border: none;
-      color: #fff;
-      font-size: 1.2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+select:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+}
 
-    button:hover {
-      background-color: #155ab6;
-    }
+select:hover {
+  border-color: #999;
+}
+
+button {
+  margin: 50px auto 0;
+  padding: 16px 36px;
+  background-color: #1a73e8;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #155ab6;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+  background-color: #124a94;
+}
+
   </style>
 </head>
 <body>
