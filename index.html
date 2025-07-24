@@ -159,6 +159,7 @@
       border-radius: 12px;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
       display: none;
+      flex-direction: column;
     }
 
     #summaryPage h2 {
@@ -210,6 +211,16 @@
       text-overflow: ellipsis;
     }
 
+    #summaryButtons {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    #summaryButtons button {
+      width: 140px;
+    }
   </style>
 </head>
 <body>
@@ -220,8 +231,8 @@
     The following statements will be provided and you will choose who best fits these statements to you. Have fun with it!
   </p>
 
-  <form id="superlativeForm" onsubmit="submitToGoogle(event)">
-    <!-- New voter name dropdown -->
+  <form id="superlativeForm" onsubmit="showSummary(event)">
+    <!-- Voter name dropdown -->
     <div class="form-group">
       <label for="voterName">
         <div class="superlative-title">What's up bitch!!!</div>
@@ -233,15 +244,22 @@
       </select>
     </div>
 
+    <!-- Superlative dropdowns inserted dynamically here -->
+
     <button type="submit">Submit</button>
   </form>
 
-  <!-- Summary page will show here after submit -->
-  <div id="summaryPage">
+  <!-- Summary page -->
+  <div id="summaryPage" style="display:none; flex-direction: column;">
     <h2>Your Voting Summary</h2>
     <div id="summaryList"></div>
+    <div id="summaryButtons">
+      <button id="editVotesBtn" type="button">Go Back & Edit</button>
+      <button id="confirmVotesBtn" type="button">Confirm & Submit</button>
+    </div>
   </div>
 
+  <!-- Thank you message -->
   <div id="thankYouMessage">
     <h2>⭐ Thanks for your submissions! ⭐</h2>
     <p>
@@ -250,171 +268,3 @@
       There will also be a crowned <strong>"BOOB of the Year"</strong> for the nominee that gets voted in the most number of categories.<br /><br />
       Good luck soldiers 🫡
     </p>
-  </div>
-
-  <script>
-    const names = [
-      "Adrian G", "Angel G", "Ankit T", "Anna G", "Brooke S", "Cam J", "Collin T",
-      "Dameli U", "Emily B", "Gavin I", "Heather M", "Isabella S", "James V",
-      "Jared F", "Jasmine B", "Jeremy C", "Jon C", "Jordan F", "Lekai T",
-      "Lonelle P", "Mesa V", "Owen D", "Rob R", "Ryan B", "Ryan M",
-      "Sydney P", "Tiffany D", "Victoria T"
-    ];
-
-    const superlatives = [
-      "break a world record and break all their bones in the process",
-      "join a cult “for the plot” and eventually become the leader",
-      "drop acid and still file their taxes correctly",
-      "become a van guy/girl and end up on a true crime Netflix series as a witness",
-      "win the lottery and be bankrupt within a year",
-      "plan their bachelor/bachelorette party for Las Vegas, NV but book everything in Las Vegas, NM",
-      "liquidate their 401k to buy a compound for the friend group",
-      "get discovered by someone with an extreme foot fetish and get all their debts paid off",
-      "get on reality TV and get no air time except for 1 embarrassing moment that goes viral",
-      "get their identity stolen and it actually improves their credit score and financial status",
-      "donate money to a Nigerian prince and it ends up being real and they become royalty",
-      "get blindfolded and dropped off anywhere in Seattle and not be able to get home by foot for a week",
-      "end up on a yacht with gays that are trying to kill them",
-      "plot to kill their boss and not be able to go through with it and then accidentally run them over with their car",
-      "set off the Lunk Alarm every time they are at a Planet Fitness",
-      "show up late to their own wedding because they got ready, hated it, and started over 3 times",
-      "drop off the face of the earth for a year and show up randomly for a Booty Bandit Bday unannounced",
-      "try to have a kid at the same time as their homie/bestie in hopes their kids will get married and you will be related",
-      "try to set you up with a relative/cousin in hopes you guys get married and you will be related",
-      "be hired as an unlicensed therapist by a millionaire because you give such good advice",
-      "get a larynx (voice box) transplant from the first ever case of hyperyapping syndrome",
-      "get a blood alcohol level (BAC) as high as their high school GPA",
-      "end up as the final girl/boy in a horror movie by sheer accident rather than skill",
-      "get a matching tattoo with a stranger they just trauma-bonded with in a bar bathroom",
-      "spend their life doomsday prepping only to lose their shit and become useless when an actual apocalypse happens",
-      "offer to play a set at a family member's funeral",
-      "put their pets as beneficiaries on their life insurance vs their kids/spouse",
-      "discover a squatter living in their house but makes them part of the family"
-    ];
-
-    const form = document.getElementById('superlativeForm');
-    const voterSelect = document.getElementById('voterName');
-    const summaryPage = document.getElementById('summaryPage');
-    const summaryList = document.getElementById('summaryList');
-    const thankYouMessage = document.getElementById('thankYouMessage');
-    const dropdowns = [];
-
-    // Populate voter name dropdown
-    names.forEach(name => {
-      const option = document.createElement('option');
-      option.value = name;
-      option.textContent = name;
-      voterSelect.appendChild(option);
-    });
-
-    // Create dropdowns dynamically for each superlative
-    superlatives.forEach((desc, i) => {
-      const group = document.createElement('div');
-      group.className = 'form-group';
-
-      const label = document.createElement('label');
-      label.htmlFor = `dropdown${i}`;
-
-      const titleLine = document.createElement('div');
-      titleLine.className = 'superlative-title';
-      titleLine.textContent = 'MOST LIKELY TO...';
-
-      const descLine = document.createElement('div');
-      descLine.className = 'superlative-desc';
-      descLine.textContent = desc;
-
-      label.appendChild(titleLine);
-      label.appendChild(descLine);
-      group.appendChild(label);
-
-      const select = document.createElement('select');
-      select.id = `dropdown${i}`;
-      select.name = `superlative${i}`;
-      // Dropdown is optional — no required
-      select.innerHTML = `<option value="">-- Select a nominee (optional) --</option>`;
-      names.forEach(name => {
-        select.innerHTML += `<option value="${name}">${name}</option>`;
-      });
-
-      select.addEventListener('change', updateDropdowns);
-      dropdowns.push(select);
-      // Insert each group before the submit button (which is last child)
-      form.insertBefore(group, form.lastElementChild);
-    });
-
-    // Disable options already selected in other dropdowns (except current)
-    function updateDropdowns() {
-      const selected = dropdowns
-        .map(d => d.value)
-        .filter(val => val !== "");
-      dropdowns.forEach(dropdown => {
-        const current = dropdown.value;
-        Array.from(dropdown.options).forEach(option => {
-          if (option.value && option.value !== current) {
-            option.disabled = selected.includes(option.value);
-          } else {
-            option.disabled = false;
-          }
-        });
-      });
-    }
-
-    // Submit handler with Google Sheets integration + show summary page
-    function submitToGoogle(e) {
-      e.preventDefault();
-
-      if (!voterSelect.value) {
-        alert("Please select your name before submitting.");
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('voterName', voterSelect.value);
-      dropdowns.forEach((d, i) => {
-        formData.append(`superlative${i + 1}`, d.value || "");
-      });
-
-      const scriptURL = "https://script.google.com/macros/s/AKfycbwzmtlb5NGCZM-vrMVwEr4xVXhCLnGW2FgWnVhz968vICSmDHCIo11WCVIGHXdWwjnp/exec";
-
-      fetch(scriptURL, {
-        method: "POST",
-        body: formData,
-      })
-        .then(response => {
-          if (!response.ok) throw new Error("Network error");
-
-          // Hide form
-          form.style.display = "none";
-
-          // Build summary list
-          summaryList.innerHTML = '';
-          superlatives.forEach((desc, i) => {
-            const vote = dropdowns[i].value;
-            const item = document.createElement('div');
-            item.className = 'summary-item' + (vote === "" ? ' missing' : '');
-
-            const supText = document.createElement('div');
-            supText.className = 'superlative-text';
-            supText.textContent = `MOST LIKELY TO... ${desc}`;
-
-            const nominee = document.createElement('div');
-            nominee.className = 'nominee';
-            nominee.textContent = vote === "" ? 'No vote submitted' : vote;
-
-            item.appendChild(supText);
-            item.appendChild(nominee);
-            summaryList.appendChild(item);
-          });
-
-          // Show summary page and thank you message
-          summaryPage.style.display = 'block';
-          thankYouMessage.style.display = 'block';
-        })
-        .catch(error => {
-          alert("Something went wrong submitting your nomination. Please try again.");
-          console.error(error);
-        });
-    }
-  </script>
-</body>
-</html>
